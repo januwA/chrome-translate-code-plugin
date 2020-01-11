@@ -5,9 +5,26 @@
   "description": "避免翻译页面中的代码",
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["js/content.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "exclude_matches": [
+        "*://*.medium.com/*"
+      ],
+      "js": [
+        "js/content.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.medium.com/*"
+      ],
+      "js": [
+        "js/medium-content.js"
+      ]
     }
   ],
-  "permissions": ["tabs"]
+  "permissions": [
+    "tabs"
+  ]
 }
