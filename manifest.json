@@ -22,6 +22,14 @@
       "js": [
         "js/medium-content.js"
       ]
+    },
+    {
+      "matches": [
+        "*://gist.github.com/*"
+      ],
+      "js": [
+        "js/gist-github-content.js"
+      ]
     }
   ],
   "permissions": [
