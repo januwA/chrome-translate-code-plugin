@@ -1,28 +1,21 @@
-// 标签页中的内容脚本
+// 遍历页面的pre元素，判断第一个子元素是否自有一个
+// 如果有一个在判断是否为code标签
+// 否则将所有子元素放在code标签中
 
 // pre
 function checkPres() {
   const pres = document.querySelectorAll("pre");
-  for (let i = 0; i < pres.length; i++) {
-    const pre = pres[i];
-    if (pre.innerHTML.trim()) {
-      const cls = pre.children;
-      if (cls.length === 0) {
-        pre.innerHTML = `<code>${pre.innerHTML}</code>`;
-      } else {
-        if (
-          pre.children.length === 1 &&
-          pre.firstElementChild.nodeName == "CODE"
-        ) {
-          continue;
-        }
-        const nmodes = Array.from(pre.childNodes);
-        const code = document.createElement("code");
-        nmodes.forEach(e => code.appendChild(e));
-        pre.appendChild(code);
-      }
+  pres.forEach((pre) => {
+    const hasChildren = pre.children.length !== 0;
+
+    if (hasChildren && pre.firstElementChild.nodeName !== "CODE") {
+      // 有子元素
+      pre.innerHTML = `<code>${pre.innerHTML}</code>`;
+    } else if (!hasChildren && pre.innerHTML.trim()) {
+      // 只有文本
+      pre.innerHTML = `<code>${pre.innerHTML}</code>`;
     }
-  }
+  });
 }
 
 checkPres();
@@ -30,13 +23,14 @@ checkPres();
 function checkGist() {
   // gist
   const gists = document.querySelectorAll(".gist");
-  for (let i = 0; i < gists.length; i++) {
-    const gist = gists[i];
-    if (gist.parentElement && gist.parentElement.nodeName === "CODE") continue;
+  gists.forEach((gist) => {
+    if (gist.parentElement && gist.parentElement.nodeName === "CODE") return;
+
+    // 将整个gist区域塞进code标签里面，避免被翻译
     const codeElement = document.createElement("code");
     codeElement.innerHTML = gist.outerHTML;
     gist.replaceWith(codeElement);
-  }
+  });
 }
 
 checkGist();
