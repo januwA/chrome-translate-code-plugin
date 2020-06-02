@@ -30,6 +30,15 @@
       "js": [
         "js/gist-github-content.js"
       ]
+    },
+
+    {
+      "matches": [
+        "*://*.cheatengine.org/*"
+      ],
+      "js": [
+        "js/cheatengine-content.js"
+      ]
     }
   ],
   "permissions": [
