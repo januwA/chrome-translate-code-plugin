@@ -10,7 +10,7 @@ function checkPres() {
 
     if (hasChildren && pre.firstElementChild.nodeName !== "CODE") {
       // 有子元素
-      pre.innerHTML = `<code>${pre.innerHTML}</code>`;
+      pre.innerHTML = `<code style="font-family: inherit;">${pre.innerHTML}</code>`;
     } else if (!hasChildren && pre.innerHTML.trim()) {
       // 只有文本
       pre.innerHTML = `<code>${pre.innerHTML}</code>`;

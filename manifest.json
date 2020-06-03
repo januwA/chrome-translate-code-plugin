@@ -9,7 +9,8 @@
         "<all_urls>"
       ],
       "exclude_matches": [
-        "*://*.medium.com/*"
+        "*://*.medium.com/*",
+        "*://gist.github.com/*"
       ],
       "js": [
         "js/content.js"
