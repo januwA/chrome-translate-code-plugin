@@ -10,32 +10,16 @@ function checkPres() {
 
     if (hasChildren && pre.firstElementChild.nodeName !== "CODE") {
       // 有子元素
-      pre.innerHTML = `<code style="font-family: inherit;">${pre.innerHTML}</code>`;
+      pre.innerHTML = `<code style="font-family: inherit; white-space: pre;">${pre.innerHTML}</code>`;
     } else if (!hasChildren && pre.innerHTML.trim()) {
       // 只有文本
-      pre.innerHTML = `<code>${pre.innerHTML}</code>`;
+      pre.innerHTML = `<code style="white-space: pre;">${pre.innerHTML}</code>`;
     }
   });
 }
 
 checkPres();
 
-function checkGist() {
-  // gist
-  const gists = document.querySelectorAll(".gist");
-  gists.forEach((gist) => {
-    if (gist.parentElement && gist.parentElement.nodeName === "CODE") return;
-
-    // 将整个gist区域塞进code标签里面，避免被翻译
-    const codeElement = document.createElement("code");
-    codeElement.innerHTML = gist.outerHTML;
-    gist.replaceWith(codeElement);
-  });
-}
-
-checkGist();
-
 setInterval(() => {
   checkPres();
-  checkGist();
 }, 1200);
