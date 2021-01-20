@@ -2,6 +2,14 @@
 // 如果有一个在判断是否为code标签
 // 否则将所有子元素放在code标签中
 
+// 黑纸白字
+const codeStyle = `
+    font-family: inherit; 
+    white-space: pre;
+    display: block;
+    font-size: 16px;
+`;
+
 // pre
 function checkPres() {
   const pres = document.querySelectorAll("pre");
@@ -10,10 +18,10 @@ function checkPres() {
 
     if (hasChildren && pre.firstElementChild.nodeName !== "CODE") {
       // 有子元素
-      pre.innerHTML = `<code style="font-family: inherit; white-space: pre;">${pre.innerHTML}</code>`;
+      pre.innerHTML = `<code style="${codeStyle}">${pre.innerHTML}</code>`;
     } else if (!hasChildren && pre.innerHTML.trim()) {
       // 只有文本
-      pre.innerHTML = `<code style="white-space: pre;">${pre.innerHTML}</code>`;
+      pre.innerHTML = `<code style="${codeStyle}">${pre.innerHTML}</code>`;
     }
   });
 }
