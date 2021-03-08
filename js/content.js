@@ -2,7 +2,6 @@
 // 如果有一个在判断是否为code标签
 // 否则将所有子元素放在code标签中
 
-// 黑纸白字
 const codeStyle = `
     font-family: inherit; 
     white-space: pre;
